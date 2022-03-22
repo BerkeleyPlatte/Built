@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api, Resource
@@ -32,23 +32,25 @@ class BudgetItemSchema(ma.SQLAlchemySchema):
     price = ma.auto_field()
     percent_of_budget = ma.auto_field()
     
+budget_item_schema = BudgetItemSchema()
+budget_items_schema = BudgetItemSchema(many=True)
     
+
+
 class BudgetItemListResource(Resource):
     def get(self):
         budget_items = BudgetItem.query.all()
-        return budget_items.dump(budget_items)
+        return budget_items_schema.dump(budget_items)
 
 api.add_resource(BudgetItemListResource, '/budget_items')
 
     
-db.create_all()
-budget_item_schema = BudgetItemSchema()
-budget_items_scema = BudgetItemSchema(many=True)
+
+
 budget_item = BudgetItem(name="laptop")
 db.session.add(budget_item)
 db.session.commit()
 budget_item_schema.dump(budget_item)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
