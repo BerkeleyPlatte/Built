@@ -4,6 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+flask = "*"
+flask-sqlalchemy = "*"
+flask-marshmallow = "*"
+flask-restful = "*"
+pytest = "*"
+marshmallow-sqlalchemy = "*"
 
 [dev-packages]
 
