@@ -39,8 +39,8 @@ budget_items_schema = BudgetItemSchema(many=True)
 
 class BudgetItemListResource(Resource):
     def get(self):
-        posts = BudgetItem.query.all()
-        return budget_items_schema.dump(posts)
+        budget_items = BudgetItem.query.all()
+        return budget_items_schema.dump(budget_items)
 
     def post(self):
         new_budget_item = BudgetItem(
