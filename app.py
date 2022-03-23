@@ -64,7 +64,7 @@ class BudgetItemResource(Resource):
         if 'name' in request.json:
             budget_item.name = request.json["name"]
         if 'price' in request.json:
-            budget_item.content = request.json["price"]
+            budget_item.price = request.json["price"]
         if 'percent_of_budget' in request.json:
             budget_item.percent_of_budget = request.json["percent_of_budget"]
 
