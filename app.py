@@ -3,6 +3,7 @@ from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api, Resource
+from flask_migrate import Migrate
 
 
 app = Flask(__name__)
@@ -11,6 +12,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"+file_path
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 api = Api(app)
+migrate = Migrate(app, db)
 
 
 class BudgetItem(db.Model):
@@ -79,7 +81,7 @@ class BudgetItemResource(Resource):
 
 
 api.add_resource(BudgetItemListResource, '/budget_items/')
-api.add_resource(BudgetItemResource, '/budget_items/<int:budget_item_id>')
+api.add_resource(BudgetItemResource, '/budget_items/<int:budget_item_id>/')
 
 db.create_all()
 

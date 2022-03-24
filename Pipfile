@@ -10,6 +10,8 @@ flask-marshmallow = "*"
 flask-restful = "*"
 pytest = "*"
 marshmallow-sqlalchemy = "*"
+flask-migrate = "*"
+mysql-connector = "*"
 
 [dev-packages]
 
